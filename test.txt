@@ -1,0 +1,111 @@
+   19 #!/usr/bin/bash
+   18
+   17 # 1. tmux list panes
+   16 panes=$(tmux list-panes)
+   15 #echo $panes > /tmp/tmux-test.txt
+   14 echo $panes > /tmp/hello
+   13 # 2. tmux for each pane get contents
+   12 # 3. save buffers
+   11 # 4. create new window open exact split
+   10 # 5. paste correspondent buffers
+    9
+    8 for pane_id in $(tmux list-panes -a -F "#{pane_id}"); do
+    7         echo "=== Pane $pane_id ==="
+    6
+    5         tmux list-panes -t "$pane_id" -F "Size: #{pane_width}x#{pane_height}"
+    4
+    3         echo "Content:"
+    2
+    1         #tmux capture-pane -t "$pane_id"\; save-buffer -a ./test.txt
+  20          tmux capture-pane -t "$pane_id"\; save-buffer -a ./test.txt
+    1
+    2         echo
+    3 done
+    4
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+vimlink.sh                                                                                                   20,34-41       All
+"vimlink.sh" 24L, 566B written
+jma@pop-os:~/dev/vimlink$ tmux save-buffer
+usage: save-buffer [-a] [-b buffer-name] path
+jma@pop-os:~/dev/vimlink$ tmux save-buffer --help
+usage: save-buffer [-a] [-b buffer-name] path
+jma@pop-os:~/dev/vimlink$ tmux --help
+usage: tmux [-2CDlNuvV] [-c shell-command] [-f file] [-L socket-name]
+            [-S socket-path] [-T features] [command [flags]]
+jma@pop-os:~/dev/vimlink$ man tmux
+jma@pop-os:~/dev/vimlink$ j
+
+
+
+
+
+
+
+jma@pop-os:~/dev/vimlink$ ./vimlink.sh
+=== Pane %0 ===
+Size: 127x39
+Size: 127x16
+Size: 126x56
+Content:
+
+=== Pane %3 ===
+Size: 127x39
+Size: 127x16
+Size: 126x56
+Content:
+
+=== Pane %2 ===
+Size: 127x39
+Size: 127x16
+Size: 126x56
+Content:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
