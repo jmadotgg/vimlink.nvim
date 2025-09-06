@@ -1,9 +1,10 @@
-local M = {}
 local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local conf = require("telescope.config")
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
+
+local M = {}
 
 local function show_files(vimlink_path)
   local buffer_list = vim.fn.system(vimlink_path)
@@ -34,7 +35,7 @@ function M.setup(options)
     show_files("./bin/linux/vimlink")
   end, {})
 
-  vim.keymap.set("n", "<leader>vl", show_files, {
+  vim.keymap.set("n", "<leader>vl", ":Vimlink", {
     desc = "Say hello with first plugin Neovim plugin that captures tmux window output, detects file pahts and pipes them into a Telescope file dialog.",
   })
 end

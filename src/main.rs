@@ -1,6 +1,5 @@
 use regex::{self, Regex};
-use std::{
-    collections::HashSet,
+use std::{ collections::HashSet,
     io::{Write, stdout},
     process::Command,
 };
