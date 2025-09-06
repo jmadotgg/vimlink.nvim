@@ -35,7 +35,7 @@ function M.setup(options)
     show_files("./bin/linux/vimlink")
   end, {})
 
-  vim.keymap.set("n", "<leader>vl", ":Vimlink<C-R>", {
+  vim.keymap.set("n", "<leader>vl", ":Vimlink<CR>", {
     desc = "Say hello with first plugin Neovim plugin that captures tmux window output, detects file pahts and pipes them into a Telescope file dialog.",
   })
 end
