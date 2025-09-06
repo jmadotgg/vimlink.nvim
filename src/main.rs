@@ -1,4 +1,9 @@
-use std::process::Command;
+use regex::{self, Regex};
+use std::{
+    collections::HashSet,
+    io::{Write, stdout},
+    process::Command,
+};
 
 fn main() {
     let output = Command::new("tmux")
@@ -32,20 +37,32 @@ fn main() {
             .unwrap();
 
         pane.contents = Some(String::from_utf8_lossy(&output.stdout).to_string());
-
-        dbg!(pane);
     }
 
-    let output = Command::new("tmux")
-        .args(["new-window", "-k", "-n", "vimlink"])
-        .output()
-        .unwrap();
+    let re = Regex::new(
+        r#"[^!:()`"\/][.\-_a-zA-Z0-9]*([\/~]|~\/)[.\-_a-zA-Z0-9]+([\/]?[.\-_a-zA-Z0-9]*)*"#,
+    )
+    .unwrap();
 
-    let output = Command::new("tmux")
-        .args(["split-window", "-h", "-p", "30"])
-        .output()
-        .unwrap();
+    let content_all = panes
+        .into_iter()
+        .map(|pane: Pane| pane.contents.unwrap())
+        .collect::<Vec<_>>()
+        .join("\n");
 
+    let mut paths = re
+        .find_iter(&content_all)
+        .into_iter()
+        .map(|mat| mat.as_str().trim())
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect::<Vec<_>>();
+
+    paths.sort();
+
+    let result = paths.join("\n").trim().to_owned() + "\n";
+
+    stdout().write_all(&result.as_bytes()).unwrap();
 }
 
 #[derive(Debug)]
