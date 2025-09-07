@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: cargo build --release
-    - name: Release
-    - uses: actions/checkout@v4
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "target/release/vimlink"
+    #- name: Release
+    #- uses: actions/checkout@v4
+    #- uses: ncipollo/release-action@v1
+    #  with:
+    #    artifacts: "target/release/vimlink"
