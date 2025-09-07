@@ -19,8 +19,8 @@ jobs:
       contents: write
     needs: build
     steps:
-    - name: Release
     - uses: actions/checkout@v4
+    - name: Release
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "target/release/vimlink"
