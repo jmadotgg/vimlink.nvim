@@ -9,14 +9,16 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
     - uses: actions/checkout@v4
     - name: Build
       run: cargo build --release
-    #- name: Release
-    #- uses: actions/checkout@v4
-    #- uses: ncipollo/release-action@v1
-    #  with:
-    #    artifacts: "target/release/vimlink"
+  release:
+    permissions:
+      contents: write
+    steps:
+    - name: Release
+    - uses: actions/checkout@v4
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "target/release/vimlink"
