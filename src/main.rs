@@ -59,6 +59,8 @@ fn main() {
 
     paths.sort();
 
+    println!("hello");
+
     let result = paths.join("\n").trim().to_owned() + "\n";
 
     stdout().write_all(&result.as_bytes()).unwrap();
