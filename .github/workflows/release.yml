@@ -1,20 +1,18 @@
-name: Rust
+name: Releases
 
-on:
+on: 
   push:
-    branches: [ "master" ]
-
-env:
-  CARGO_TERM_COLOR: always
+    tags:
+    - '*'
 
 jobs:
+
   build:
-
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "target/release/vimlink"
