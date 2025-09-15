@@ -33,12 +33,13 @@ end
 function M.setup(options)
   vim.api.nvim_create_user_command("Vimlink", function()
     local paths = vim.api.nvim_list_runtime_paths()
+    local vimlink_path = ""
     for _, str in ipairs(paths) do
       if str:match(".*vimlink.*") then
-        print(str)
+        vimlink_path = str
       end
     end
-    --show_files("./bin/linux/vimlink")
+    show_files(vimlink_path .. "/bin/linux/vimlink")
   end, {})
 
   vim.keymap.set("n", "<leader>vl", ":Vimlink<CR>", {
