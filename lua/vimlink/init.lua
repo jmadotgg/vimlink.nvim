@@ -34,7 +34,7 @@ function M.setup(options)
   vim.api.nvim_create_user_command("Vimlink", function()
     local paths = vim.api.nvim_list_runtime_paths()
     for _, str in ipairs(paths) do
-      if str:match(".*vimlink$") then
+      if str:match(".*vimlink.*") then
         print(str)
       end
     end
