@@ -39,7 +39,7 @@ function M.setup(options)
       --  return str
       --end
     end
-    show_files("./bin/linux/vimlink")
+    --show_files("./bin/linux/vimlink")
   end, {})
 
   vim.keymap.set("n", "<leader>vl", ":Vimlink<CR>", {
