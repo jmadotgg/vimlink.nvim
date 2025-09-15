@@ -35,9 +35,9 @@ function M.setup(options)
     local paths = vim.api.nvim_list_runtime_paths()
     for _, str in ipairs(paths) do
       print(str)
-      --if str:match(".*vimlink$") then
-      --  return str
-      --end
+      if str:match(".*vimlink$") then
+        print(str)
+      end
     end
     --show_files("./bin/linux/vimlink")
   end, {})
